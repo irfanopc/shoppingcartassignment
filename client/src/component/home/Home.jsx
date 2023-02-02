@@ -8,6 +8,10 @@ function Home() {
   const [data, setData] = useState([]);
   const [cart, setCart] = useState([]);
   const [totalPrice,setTotalPrice] = useState([])
+  let ans = 0;
+  for(let i =0 ;i< totalPrice.length;i++){
+    ans+=totalPrice[i];
+  }
   //console.log(cart);
   useEffect(() => {
     axios
@@ -42,7 +46,7 @@ function Home() {
             </tr>
             {cart.length > 0 &&
               cart.map((product, i) => (
-                <ProductRow key={product._id} product={product} index={i} data={data} cart={cart} setCart={setCart} totalPrice={totalPrice} setTotalPrice={setTotalPrice} />
+                <ProductRow key={product._id} product={product} index={i} data={data} cart={cart} setCart={setCart} totalPrice={totalPrice} setTotalPrice={setTotalPrice} ans={ans} />
               ))}
           </tbody>
           <tfoot>
@@ -51,7 +55,7 @@ function Home() {
                 Total Price
               </td>
               <td align="center" className="total">
-                {}
+                {ans}
               </td>
             </tr>
           </tfoot>

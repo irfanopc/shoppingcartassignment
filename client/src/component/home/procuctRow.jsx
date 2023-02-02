@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 //import axios from "axios";
 
-const ProductRow = ({ product, index,cart,setCart,totalPrice,setTotalPrice }) => {
+const ProductRow = ({ product, index,cart,setCart,totalPrice,setTotalPrice,ans }) => {
 
 
 
@@ -47,7 +47,6 @@ const ProductRow = ({ product, index,cart,setCart,totalPrice,setTotalPrice }) =>
         <button
           onClick={() => {
             if (count > 1) setCount((c) => c - 1);
-            
           }}
         >
           -

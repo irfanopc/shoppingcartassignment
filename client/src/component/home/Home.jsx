@@ -12,7 +12,7 @@ function Home() {
   //console.log(cart);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/product")
+      .get("https://shoppingcart-7a48.onrender.com/product")
       .then((data) => {
         setData(data.data.products);
       })

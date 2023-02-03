@@ -9,9 +9,13 @@ const Header = ({ data, onChangeItem }) => {
     const isExecuted = window.confirm("Do you want to logout");
     if (isExecuted) {
       axios
-        .get("http://localhost:5000/logout")
+        .get("https://shoppingcart-7a48.onrender.com/logout")
         .then((data) => {
           alert(data.data.message);
+          localStorage.removeItem("Cart")
+          localStorage.removeItem("username")
+          localStorage.removeItem("id")
+          window.history.pushState({}, null, "/");
           navigator("/");
         })
         .catch((error) => {

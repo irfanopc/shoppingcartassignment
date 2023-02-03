@@ -1,14 +1,13 @@
-*{
-    padding: 0%;
-    margin: 0%;
+* {
+  padding: 0%;
+  margin: 0%;
 }
-.home{
-    width: 100%;
-
+.home {
+  width: 100%;
 }
 .table {
   position: absolute;
-  width:30%;
+  width: 30%;
   margin: auto;
   display: flex;
   justify-content: center;
@@ -23,8 +22,6 @@ td {
   border: 1px solid #000000;
   border-collapse: collapse;
   margin: auto;
- 
-
 
   background-color: #e9606c;
 }
@@ -32,7 +29,6 @@ body {
   background-image: linear-gradient(to bottom, rgb(200, 91, 91), blue);
 }
 .banner {
-
   height: 60vh;
   width: 100%;
   background-image: linear-gradient(to bottom, red, rgb(123, 123, 216));

@@ -7,11 +7,8 @@ import ProductRow from "./procuctRow";
 function Home() {
   const [data, setData] = useState([]);
   const [cart, setCart] = useState([]);
-  const [totalPrice, setTotalPrice] = useState([]);
-  let ans = 0;
-  for (let i = 0; i < totalPrice.length; i++) {
-    ans += totalPrice[i];
-  }
+  const [counts,setCounts] = useState({})
+  const total = cart.reduce((acc, product) => acc + (product.price *( counts[product._id]) || product.price), 0);
   //console.log(cart);
   useEffect(() => {
     axios
@@ -36,6 +33,12 @@ function Home() {
       setCart(savedCart);
     }
   }, []);
+  const handleCountChange = (productId, count) => {
+    setCounts({
+      ...counts,
+      [productId]: count, 
+    });                        
+  };
   return (
     <div className="home">
       <Header cart={cart} data={data} onChangeItem={onChangeItem} />
@@ -60,24 +63,24 @@ function Home() {
             {cart.length > 0 &&
               cart.map((product, i) => (
                 <ProductRow
-                  key={product._id}
+                  key={i}
                   product={product}
                   index={i}
                   data={data}
                   cart={cart}
                   setCart={setCart}
-                  totalPrice={totalPrice}
-                  setTotalPrice={setTotalPrice}
+                   count ={counts[product._id]  || 1} //to get value of perticular key
+            onCountChange={count => handleCountChange(product._id, count)}
                 />
               ))}
           </tbody>
           <tfoot>
             <tr>
-              <td scope="col" align="center" colSpan="4">
+              <td  align="center" colSpan="4">
                 Total Price
               </td>
               <td align="center" className="total">
-                {ans}
+                {total}
               </td>
             </tr>
           </tfoot>

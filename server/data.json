@@ -1,25 +1,23 @@
 [
-    {
-      "name": "samsung",
+  {
+      "name": "Samsang",
+      "price": 10000,
+      "img": "https://www.reliancedigital.in/medias/Samsung-Galaxy-S22-Ultra-SmartPhone-492849218-i-8-1200Wx1200H?context=bWFzdGVyfGltYWdlc3wxMDQxNzl8aW1hZ2UvanBlZ3xpbWFnZXMvaDVlL2g1Ni85Nzc5NTMxNDgxMTE4LmpwZ3w5OTlhMWI5YmQzZTM2MjJiMTJhYTY4YjYyMTVhNDUyYmY3YmYxYzMyMjkzOGY2MDhjMTY4NDJkNmI3ZGQzNTli"
+  },
+  {
+      "name": "Redmi",
       "price": 12000,
-      "image": "https://images.samsung.com/is/image/samsung/p6pim/in/sm-a536elbhins/gallery/in-galaxy-a53-5g-a536-416923-416923-sm-a536elbhins-533689163?$650_519_PNG$"
-    },
-    {
-      "name": "real me",
-      "price": 20000,
-      "image": "https://m.media-amazon.com/images/I/41AIRCiIRYL._SX679_.jpg"
-    },
-    {
-     
-      "name": "iphone",
-      "price": 30000,
-      "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-finish-select-202207-white?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1662150115751"
-    },
-    {
-      
-      "name": "micromax",
-      "price": 400000,
-      "image": "https://5.imimg.com/data5/DU/AJ/MY-12768335/micromax-mobile-500x500.png"
-    }
+      "img": "https://i.gadgets360cdn.com/products/large/redmi-note-12-5g-db-gadgets360-800x600-1673019609.jpg"
+  },
+  {
+      "name": "Realme",
+      "price": 14000,
+      "img": "https://image01.realme.net/general/20220322/1647931193820.png"
+  },
+  {
+      "name": "iPhone",
+      "price": 15000,
+      "img": "https://m.media-amazon.com/images/I/71E5zB1qbIL._SL1500_.jpg"
+  }
   ]
   

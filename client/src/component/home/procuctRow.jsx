@@ -2,44 +2,59 @@ import { useState } from "react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import './home.css'
 //import axios from "axios";
 
-const ProductRow = ({ product, index,cart,setCart,totalPrice,setTotalPrice,ans }) => {
-
+const ProductRow = ({ product, index,cart,setCart,totalPrice,setTotalPrice }) => {
 
 
   const navigator = useNavigate();
   const [count, setCount] = useState(1);
 
   const onDelete=(id)=>{
-   alert('are u going to delete')
-   const newCart = cart.filter((item)=>{
-         return item._id !==id
-    })
-    setCart(newCart)
+    let isExecuted = window.confirm("Are you sure to delete this item?");
+if(isExecuted){
+  const newCart = cart.filter((item)=>{
+    return item._id !==id
+})
+setCart(newCart)
+}
+   
   }
 
   const onEdit=(id)=>{
-    const newName =prompt("Edit name");
-    const newPrice = prompt('edit price')
-     cart.map((item)=>{
-      if(item._id === id){
-        item.name = newName
-        item.price = newPrice
-        }
-        return item;
-    })
-    setCart([...cart])
+    let isExecuted = window.confirm("Are you sure to edit this item?");
+    if(isExecuted){
+      const newName =prompt("Edit name");
+      const newPrice = prompt('edit price')
+       cart.map((item)=>{
+        if(item._id === id){
+          item.name = newName
+          item.price = newPrice
+          }
+          return item;
+      })
+      setCart([...cart])
+    }
+  
   }
   let price = product.price
   useEffect(()=>{
     { setTotalPrice([...totalPrice,price])}
     
    },[count])
-   console.log(totalPrice);
+  // console.log(totalPrice);
+  useEffect(() => {
+    window.localStorage.setItem("Cart", JSON.stringify(cart));
+  }, [cart]);
+
+   
+ 
+
   return (
  
     <tr>
+
       <td>{index + 1}</td>
       <td>{product.name}</td>
       <td>{product.price}</td>
@@ -47,6 +62,7 @@ const ProductRow = ({ product, index,cart,setCart,totalPrice,setTotalPrice,ans }
         <button
           onClick={() => {
             if (count > 1) setCount((c) => c - 1);
+              
           }}
         >
           -

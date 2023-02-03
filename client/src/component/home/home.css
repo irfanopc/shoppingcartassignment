@@ -1,9 +1,49 @@
-.table{
-border-radius: 5px;
-width: 30%;
-margin: auto;
+*{
+    padding: 0%;
+    margin: 0%;
 }
-table,th,td{
-    border: 1px solid #000000;
-    border-collapse: collapse;
+.home{
+    width: 100%;
+
+}
+.table {
+  position: absolute;
+  width:30%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  left: 33.33%;
+  top: 45vh;
+}
+tbody table,
+th,
+td {
+  border-radius: 5px;
+  text-align: center;
+  border: 1px solid #000000;
+  border-collapse: collapse;
+  margin: auto;
+ 
+
+
+  background-color: #e9606c;
+}
+body {
+  background-image: linear-gradient(to bottom, rgb(200, 91, 91), blue);
+}
+.banner {
+
+  height: 60vh;
+  width: 100%;
+  background-image: linear-gradient(to bottom, red, rgb(123, 123, 216));
+}
+.banner img {
+  width: 100%;
+  height: 60vh;
+}
+button {
+  width: 100%;
+  background-color: #95bdecfa;
+  border-radius: 5px;
+  cursor: pointer;
 }

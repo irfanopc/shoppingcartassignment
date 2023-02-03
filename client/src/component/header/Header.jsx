@@ -5,21 +5,22 @@ const Header = ({data,onChangeItem}) => {
   const navigator = useNavigate()
   let username = window.localStorage.getItem('username');
   let setUsername = username.slice(0)
-
   const handleLogout =  () => {
     axios.get('http://localhost:5000/logout')
-      .then((data)=> {
+      .then((data) => {
         localStorage.removeItem('username')
         localStorage.removeItem('id')
-         alert(data.data.message);
+        alert(data.data.message);
         navigator("/");
+        
+        
+       
       })
-      .catch((error)=>{
+      .catch((error) => {
         console.log(error);
-      })
+      });
+  };
   
-    
-  }
 
     return (
       <div className='header'>

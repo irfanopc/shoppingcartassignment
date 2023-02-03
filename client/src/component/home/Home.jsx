@@ -7,10 +7,10 @@ import ProductRow from "./procuctRow";
 function Home() {
   const [data, setData] = useState([]);
   const [cart, setCart] = useState([]);
-  const [totalPrice,setTotalPrice] = useState([])
+  const [totalPrice, setTotalPrice] = useState([]);
   let ans = 0;
-  for(let i =0 ;i< totalPrice.length;i++){
-    ans+=totalPrice[i];
+  for (let i = 0; i < totalPrice.length; i++) {
+    ans += totalPrice[i];
   }
   //console.log(cart);
   useEffect(() => {
@@ -29,10 +29,23 @@ function Home() {
     });
     setCart([...cart, ...product]);
   };
-  
+
+  useEffect(() => {
+    const savedCart = JSON.parse(window.localStorage.getItem("Cart"));
+    if (savedCart) {
+      setCart(savedCart);
+    }
+  }, []);
   return (
     <div className="home">
       <Header cart={cart} data={data} onChangeItem={onChangeItem} />
+
+      <div className="banner">
+        <img
+          src="https://m.media-amazon.com/images/I/61+GduPIncL._SX3000_.jpg"
+          alt="banner"
+        />
+      </div>
       <section className="table">
         <table>
           <tbody>
@@ -46,12 +59,21 @@ function Home() {
             </tr>
             {cart.length > 0 &&
               cart.map((product, i) => (
-                <ProductRow key={product._id} product={product} index={i} data={data} cart={cart} setCart={setCart} totalPrice={totalPrice} setTotalPrice={setTotalPrice} ans={ans} />
+                <ProductRow
+                  key={product._id}
+                  product={product}
+                  index={i}
+                  data={data}
+                  cart={cart}
+                  setCart={setCart}
+                  totalPrice={totalPrice}
+                  setTotalPrice={setTotalPrice}
+                />
               ))}
           </tbody>
           <tfoot>
             <tr>
-              <td scope="col" colSpan="4">
+              <td scope="col" align="center" colSpan="4">
                 Total Price
               </td>
               <td align="center" className="total">

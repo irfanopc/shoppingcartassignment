@@ -18,7 +18,7 @@ function Home() {
   //console.log(cart);
   useEffect(() => {
     axios
-      .get("https://shoppingcartassignment.onrender.com/product")
+      .get("https://shoppingcart-7a48.onrender.com/product")
       .then((data) => {
         setData(data.data.products);
       })
@@ -67,7 +67,7 @@ function Home() {
     };
 
     try {
-      await axios.post("https://shoppingcartassignment.onrender.com/purchase", data);
+      await axios.post("https://shoppingcart-7a48.onrender.com/purchase", data);
       console.log("PDF sent successfully");
     } catch (error) {
       console.error(error);
@@ -81,7 +81,7 @@ function Home() {
 
   useEffect(() => {
     axios
-      .get(`https://shoppingcartassignment.onrender.com/history/${id}`)
+      .get(`https://shoppingcart-7a48.onrender.com/history/${id}`)
       .then((data) => {
         // console.log(data);
         let user = data.data.purchasehistory;

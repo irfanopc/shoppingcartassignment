@@ -18,7 +18,7 @@ function Register() {
     if (data.password !== data.cpassword) {
       return alert(`password doesn't match`);
     }
-    fetch("https://shoppingcartassignment.onrender.com/register", {
+    fetch("https://shoppingcart-7a48.onrender.com/register", {
       method: "post",
       headers: {
         "Content-Type": "application/json",

@@ -6,10 +6,12 @@ const productSchema = new mongoose.Schema ({
     price:{
         type : Number,
     },
-    image:{
+    img:{
         type : String
     },
 
 })
+
 const Product = mongoose.model("Product",productSchema);
+
 module.exports = Product

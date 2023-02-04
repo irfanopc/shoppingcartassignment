@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import ProductRow from "./procuctRow";
 import jsPDF from "jspdf";
+import History from "../history/History";
 function Home() {
   const [data, setData] = useState([]);
   const [cart, setCart] = useState([]);
@@ -17,7 +18,7 @@ function Home() {
   //console.log(cart);
   useEffect(() => {
     axios
-      .get("https://shoppingcart-7a48.onrender.com/product")
+      .get("https://shoppingcartassignment.onrender.com/product")
       .then((data) => {
         setData(data.data.products);
       })
@@ -44,7 +45,8 @@ function Home() {
       [productId]: count,
     });
   };
-  const generatePDF = () => {
+
+  const generatePDF = async () => {
     const pdf = new jsPDF();
     pdf.text(10, 20, `invoice:`);
     cart.forEach((item, index) => {
@@ -58,7 +60,46 @@ function Home() {
     });
     pdf.text(20, 30 + cart.length * 10, `Total: ${total}`);
     pdf.save(`bill.pdf`);
+    const username = window.localStorage.getItem("username");
+    const data = {
+      username: username,
+      pdf: pdf.output("datauristring"),
+    };
+
+    try {
+      await axios.post("https://shoppingcartassignment.onrender.com/purchase", data);
+      console.log("PDF sent successfully");
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+  // to get pdf
+  const [pdfData, setPdfData] = useState([]);
+  // console.log(pdfData);
+  const id = window.localStorage.getItem("id");
+
+  useEffect(() => {
+    axios
+      .get(`https://shoppingcartassignment.onrender.com/history/${id}`)
+      .then((data) => {
+        // console.log(data);
+        let user = data.data.purchasehistory;
+        const property = user.map((obj) => {
+          return {
+            property: obj.properties.map((prop) => prop),
+          };
+        });
+
+        property.map((data) => {
+          let user = data.property;
+          return setPdfData(user);
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [generatePDF]);
 
   return (
     <div className="home">
@@ -69,6 +110,7 @@ function Home() {
           alt="banner"
         />
       </div>
+
       <section className="table">
         <table>
           <tbody>
@@ -113,6 +155,11 @@ function Home() {
             </tr>
           </tfoot>
         </table>
+        <div className="history">
+          {pdfData.map((pdf, i) => (
+            <History pdf={pdf} number={i} key={i} />
+          ))}
+        </div>
       </section>
     </div>
   );

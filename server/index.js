@@ -9,6 +9,7 @@ const products = require("./routes/product");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const Product = require('./models/product')
+const PurchaseHistory =  require('./routes/purchasehistory')
 dotenv.config();
 const app = express();
 app.use(cors());
@@ -18,6 +19,7 @@ app.use("/", user);
 app.use("/", login);
 app.use("/", logout);
 app.use("/", products);
+app.use("/", PurchaseHistory);
 const fs = require('fs')
 mongoDB.set("strictQuery", false);
 const jsonData = JSON.parse(fs.readFileSync('./data.json','utf-8'))
@@ -29,7 +31,9 @@ mongoDB.connect(
     console.log(`DB CONNECTED`);
   }
 );
-
+// app.get('/',(req,res)=>{
+//   res.json('hai')
+// })
 const importData =async()=>{
 try {
   await Product.create(jsonData);
@@ -39,7 +43,7 @@ try {
   console.log(error);
 }
 }
-importData()
+ //importData()
 app.listen(port, () => {
   console.log(`port is running on ${port}`);
 });

@@ -9,12 +9,12 @@ const Header = ({ data, onChangeItem }) => {
     const isExecuted = window.confirm("Do you want to logout");
     if (isExecuted) {
       axios
-        .get("https://shoppingcart-7a48.onrender.com/logout")
+        .get("https://shoppingcartassignment.onrender.com/logout")
         .then((data) => {
           alert(data.data.message);
-          localStorage.removeItem("Cart")
-          localStorage.removeItem("username")
-          localStorage.removeItem("id")
+          localStorage.removeItem("Cart");
+          localStorage.removeItem("username");
+          localStorage.removeItem("id");
           window.history.pushState({}, null, "/");
           navigator("/");
         })
@@ -23,13 +23,6 @@ const Header = ({ data, onChangeItem }) => {
         });
     }
   };
- 
-
-  
-  
-  
-  
-  
 
   return (
     <div className="header">

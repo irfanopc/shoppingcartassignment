@@ -18,6 +18,19 @@
       "name": "iPhone",
       "price": 15000,
       "img": "https://m.media-amazon.com/images/I/71E5zB1qbIL._SL1500_.jpg"
+  },
+  {
+    "name": "iPhoneX",
+    "price": 65000,
+    "img": "https://www.apple.com/newsroom/images/product/iphone/standard/iphonex_front_back_glass_big.jpg.large.jpg"
+
+  },
+  {
+    "name": "Samsang_12pro",
+    "price": 45000,
+    "img": "https://static.toiimg.com/thumb/resizemode-4,msid-57775542,imgsize-200,width-1200,imgv-4/57775542.jpg"
+
   }
+
   ]
   

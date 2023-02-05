@@ -83,7 +83,6 @@ function Home() {
   
     // Set the initial position to print the table
     let y = 40;
-    doc.
     // Create the table headers
     doc.text('Product Name', 20, y);
     doc.text('Price/Qty', 70, y);

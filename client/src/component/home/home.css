@@ -4,6 +4,7 @@
 }
 .home {
   width: 100%;
+  display: block;
 }
 .table {
   position: absolute;
@@ -14,7 +15,7 @@
   left: 33.33%;
   top: 45vh;
 }
-tbody table,
+
 th,
 td {
   border-radius: 5px;
@@ -26,6 +27,7 @@ td {
   background-color: #e9606c;
 }
 body {
+  
   background-image: linear-gradient(to bottom, rgb(200, 91, 91), blue);
 }
 .banner {
@@ -38,6 +40,7 @@ body {
   height: 60vh;
 }
 button {
+
   width: 100%;
   background-color: #95bdecfa;
   border-radius: 5px;
@@ -46,7 +49,16 @@ button {
 #pdf{
   background-color: #cf1a35fa;
 }
-.history{
-  width: 10%;
-  
+@media screen and (max-width: 500px) {
+table{
+  display: block;
 }
+.table{
+  display: grid;
+}
+.history{
+  text-align: center;
+ 
+}
+
+ }

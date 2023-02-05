@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -28,12 +28,25 @@ function Login() {
 
         window.localStorage.setItem("id", data.user._id);
         window.localStorage.setItem("username", data.user.username);
+      
         alert(`user signin successfully`);
         
-        navigator("/home");
+
       });
   };
-
+  useEffect(() => {
+    if (localStorage.getItem("id") && localStorage.getItem("username")) {
+      navigator("/home");
+    }else{
+      navigator("/");
+    }
+  }, [localStorage.getItem("id")]);
+  // useEffect(() => {
+  //   if (!localStorage.getItem("id") && !localStorage.getItem("username")) {
+  //     navigator("/");
+  //   }
+  // }, []);
+  
   
   return (
     <>

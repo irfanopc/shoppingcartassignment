@@ -46,24 +46,70 @@ function Home() {
     });
   };
 
-  const generatePDF = async () => {
-    const pdf = new jsPDF();
-    pdf.text(10, 20, `invoice:`);
-    cart.forEach((item, index) => {
-      pdf.text(
-        20,
-        30 + index * 10,
-        `${index + 1}. ${item.name} - Price: ${item.price} - Quantity: ${
-          counts[item._id] || 1
-        } total: ${counts[item._id] * item.price || 1}`
-      );
+  // const generatePDF = async () => {
+  //   const pdf = new jsPDF();
+  //   pdf.text(10, 20, `invoice:`);
+  //   cart.forEach((item, index) => {
+  //     pdf.text(
+  //       20,
+  //       30 + index * 10,
+  //       `${index + 1}. ${item.name} - Price: ${item.price} - Quantity: ${
+  //         counts[item._id] || 1
+  //       } total: ${counts[item._id] * item.price || 1}`
+  //     );
+  //   });
+  //   pdf.text(20, 30 + cart.length * 10, `Total: ${total}`);
+  //   pdf.save(`bill.pdf`);
+    // const username = window.localStorage.getItem("username");
+    // const data = {
+    //   username: username,
+    //   pdf: pdf.output("datauristring"),
+    // };
+
+    // try {
+    //   await axios.post("https://shoppingcart-7a48.onrender.com/purchase", data);
+    //   console.log("PDF sent successfully");
+    // } catch (error) {
+    //   console.error(error);
+    // }
+  // };
+
+
+  const generatePDF = async() => {
+    const doc = new jsPDF();
+  
+    // Add title to the PDF
+    doc.text('INVOICE', 20, 20);
+  
+    // Set the initial position to print the table
+    let y = 40;
+    doc.
+    // Create the table headers
+    doc.text('Product Name', 20, y);
+    doc.text('Price/Qty', 70, y);
+    doc.text('Quantity', 120, y);
+    doc.text('Total', 160, y);
+    y += 10;
+  
+    // Create the table body
+    cart.forEach(product => {
+      doc.text(product.name, 20, y);
+      doc.text(product.price.toString(), 70, y);
+      doc.text((counts[product._id] || 1).toString(), 120, y);
+      doc.text((product.price * (counts[product._id] || 1)).toString(), 160, y);
+      y += 10;
     });
-    pdf.text(20, 30 + cart.length * 10, `Total: ${total}`);
-    pdf.save(`bill.pdf`);
+  
+    // Add the total at the end of the table
+    doc.text(130, y , `GrandTotal: ${total.toString()}`);
+  
+    // Save the PDF to the user's device
+    doc.save('cart.pdf');
+
     const username = window.localStorage.getItem("username");
     const data = {
       username: username,
-      pdf: pdf.output("datauristring"),
+      pdf: doc.output("datauristring"),
     };
 
     try {
@@ -72,7 +118,10 @@ function Home() {
     } catch (error) {
       console.error(error);
     }
+
   };
+  
+  
 
   // to get pdf
   const [pdfData, setPdfData] = useState([]);
@@ -103,7 +152,7 @@ function Home() {
 
   return (
     <div className="home">
-      <Header cart={cart} data={data} onChangeItem={onChangeItem} />
+     <Header cart={cart} data={data} onChangeItem={onChangeItem} />
       <div className="banner">
         <img
           src="https://m.media-amazon.com/images/I/61+GduPIncL._SX3000_.jpg"

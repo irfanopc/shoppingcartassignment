@@ -29,6 +29,9 @@ const ProductRow = ({
     if (isExecuted) {
       const newName = prompt("Edit name");
       const newPrice = prompt("edit price");
+      if(!newName && !newPrice){
+        return alert('enter price and name ')
+      }
       cart.map((item) => {
         if (item._id === id) {
           item.name = newName;
